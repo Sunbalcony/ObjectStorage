@@ -13,6 +13,9 @@ HTTP server方法
 ## 测试上传和下载
 
 ``````
+#上传
+curl -v http://127.0.0.1:1234/objects/test.txt -XPUT -d"this is test objects"
+下载
 curl -v http://127.0.0.1:1234/objects/test
 
 ``````
