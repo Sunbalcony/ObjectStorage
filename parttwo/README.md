@@ -32,7 +32,9 @@
 如果有数据服务节点发回确认消息，则返回该数据节点的地址，如果超过一定时间没有任何反馈，则返回HTTP错误404
 
 ##RabbitMQ消息设计
+
 apiServers和dataServers这两个Exchange需要在RabbitMQ上预先创建。
+
 每个接口服务节点在启动后都会创建自己的消息队列并绑定至apiServers Exchange，消息的正文就是该数据服务节点的HTTP监听地址，接口服务节点收到该消息后就会记录这个地址
 
 
