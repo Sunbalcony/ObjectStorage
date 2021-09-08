@@ -4,9 +4,9 @@ import (
 	"fmt"
 	"log"
 	"net/http"
+	"parttwo/dataserver/heartbeat"
+	"parttwo/dataserver/locate"
 	"parttwo/dataserver/objects"
-	"parttwo/dataserver/objects/heartbeat"
-	"parttwo/dataserver/objects/locate"
 )
 
 func main() {

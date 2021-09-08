@@ -1,6 +1,7 @@
 package locate
 
 import (
+	"fmt"
 	"os"
 	"parttwo/rabbit"
 	"strconv"
@@ -24,7 +25,9 @@ func StartLocate() {
 		if err != nil {
 			panic(err)
 		}
-		if Locate("./" + "/objects/" + object) {
+
+		if Locate("../" + "objects/" + object) {
+			fmt.Println("../" + "objects/" + object)
 			q.Send(msg.ReplyTo,"1.2.3.4")
 		}
 
