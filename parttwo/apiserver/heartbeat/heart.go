@@ -1,6 +1,7 @@
 package heartbeat
 
 import (
+	"fmt"
 	"math/rand"
 	"parttwo/rabbit"
 	"strconv"
@@ -13,9 +14,9 @@ var dataServers = make(map[string]time.Time)
 var mutex sync.Mutex
 
 func ListenHeartbeat() {
-	q := rabbit.New("amqp://storage:storage@mid.low.im:5672")
+	q := rabbit.New(rabbit.Host)
 	defer q.Close()
-	q.Bind("apiServer")
+	q.Bind("apiServers")
 	c := q.Consume()
 	go removeExpiredDataServer()
 	for msg := range c {
@@ -52,6 +53,8 @@ func GetDataServers() []string {
 	for s, _ := range dataServers {
 		ds = append(ds, s)
 	}
+	fmt.Println(ds)
+	return ds
 
 }
 

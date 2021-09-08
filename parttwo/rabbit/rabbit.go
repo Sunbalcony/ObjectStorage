@@ -5,6 +5,8 @@ import (
 	"github.com/streadway/amqp"
 )
 
+const Host = "amqp://storage:storage@mid.low.im:5672"
+
 type RabbitMQ struct {
 	channel  *amqp.Channel
 	Name     string
@@ -71,7 +73,7 @@ func (q *RabbitMQ) Publish(exchange string, body interface{}) {
 	if err != nil {
 		panic(err)
 	}
-	err = q.channel.Publish(q.exchange, "", false, false, amqp.Publishing{ReplyTo: q.Name, Body: []byte(str)})
+	err = q.channel.Publish(exchange, "", false, false, amqp.Publishing{ReplyTo: q.Name, Body: []byte(str)})
 	if err != nil {
 		panic(err)
 	}

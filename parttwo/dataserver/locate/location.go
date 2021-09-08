@@ -16,7 +16,7 @@ func Locate(name string) bool {
 }
 
 func StartLocate() {
-	q := rabbit.New("amqp://storage:storage@mid.low.im:5672")
+	q := rabbit.New(rabbit.Host)
 	defer q.Close()
 	q.Bind("dataServers")
 	c := q.Consume()
@@ -28,7 +28,7 @@ func StartLocate() {
 
 		if Locate("../" + "objects/" + object) {
 			fmt.Println("../" + "objects/" + object)
-			q.Send(msg.ReplyTo,"1.2.3.4")
+			q.Send(msg.ReplyTo, "1.2.3.4")
 		}
 
 	}
