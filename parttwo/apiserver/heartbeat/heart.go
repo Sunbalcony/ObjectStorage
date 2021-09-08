@@ -13,6 +13,7 @@ var dataServers = make(map[string]time.Time)
 
 var mutex sync.Mutex
 
+// ListenHeartbeat 从apiServers Exchange取数据存放到map，所有的数据节点
 func ListenHeartbeat() {
 	q := rabbit.New(rabbit.Host)
 	defer q.Close()
