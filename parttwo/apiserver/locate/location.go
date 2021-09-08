@@ -31,7 +31,7 @@ func Handler(w http.ResponseWriter, r *http.Request) {
 
 // Locate 定位对象  传入需要定位对象的文件名，他会创建一个新的消息队列，并向dataServers exchange群发这个对象名字的定位信息
 func Locate(name string) string {
-	q := rabbit.New("amqp://storage:storage@mid.low.im:5672")
+	q := rabbit.New(rabbit.Host)
 	defer q.Close()
 	q.Publish("dataServers", name)
 	c := q.Consume()

@@ -34,7 +34,10 @@ func put(w http.ResponseWriter, r *http.Request) {
 }
 
 func get(w http.ResponseWriter, r *http.Request) {
-	file, err := os.Open("./" + "objects/" + strings.Split(r.URL.EscapedPath(), "/")[2])
+	local, _ := os.Getwd()
+	fmt.Println(local)
+	file, err := os.Open(local + "\\objects\\" + strings.Split(r.URL.EscapedPath(), "/")[2])
+
 	if err != nil {
 		fmt.Println(err.Error())
 		w.WriteHeader(http.StatusNotFound)

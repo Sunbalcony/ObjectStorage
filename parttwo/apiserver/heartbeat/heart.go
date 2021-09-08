@@ -53,7 +53,7 @@ func GetDataServers() []string {
 	for s, _ := range dataServers {
 		ds = append(ds, s)
 	}
-	fmt.Println(ds)
+	fmt.Println("所有的数据节点为:",ds)
 	return ds
 
 }

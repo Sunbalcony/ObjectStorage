@@ -20,15 +20,15 @@ func StartLocate() {
 	defer q.Close()
 	q.Bind("dataServers")
 	c := q.Consume()
+	local, _ :=os.Getwd()
+	fmt.Println("数据节点当前文件目录",local)
 	for msg := range c {
 		object, err := strconv.Unquote(string(msg.Body))
 		if err != nil {
 			panic(err)
 		}
-
-		if Locate("../" + "objects/" + object) {
-			fmt.Println("../" + "objects/" + object)
-			q.Send(msg.ReplyTo, "1.2.3.4")
+		if Locate(local + "\\objects\\" + object) {
+			q.Send(msg.ReplyTo, "127.0.0.1:1234")
 		}
 
 	}
